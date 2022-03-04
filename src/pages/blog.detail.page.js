@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar.component';
 import BlogAll from './../components/blogAll.component';
 import Header from '../components/header.component';
+import { createComment } from '../services/comment.service'
+import { getProfile } from './../services/user.service';
+import { getComment } from './../services/comment.service';
 
 const BlogDetailPage = (props) => {
 
@@ -13,12 +16,31 @@ const BlogDetailPage = (props) => {
   const [blogFinance, setBlogFinance] = useState([])
   const [blogFashion, setBlogFashion] = useState([])
 
+  const createComments = async(comment) => {
+    const result = await createComment(comment)
+    console.log(result)
+    if(result) {
+      console.log('comment creating')
+    }
+  }
+
   const navigate = useNavigate()
+
+  const getComments = async() => {
+    const result = await getComment(sessionStorage.getItem('comment'))
+    if (result) {
+      console.log(result)
+      return result
+    }
+    return null
+  }
 
   useEffect(() => {
     reloadBlogs()
   },[])
 
+
+const [gcomment, setComment] = useState('')
   const reloadBlogs = () => {
     loadBlog('LIFE', setBlogLife)
     loadBlog('ENTERTAINMENT',setBlogEntertainment)
@@ -34,6 +56,7 @@ const BlogDetailPage = (props) => {
       func(result)
     }
   }
+
 
     return (
       <div>
@@ -52,6 +75,8 @@ const BlogDetailPage = (props) => {
                   title = {title}
                   content = {content}
                   tag = {tag}
+                  createComment = {createComments}
+                  getComments = {getComments}
                    />
                 )
               })}
@@ -70,7 +95,7 @@ const BlogDetailPage = (props) => {
                     title = {title}
                     content = {content}
                     tag = {tag}
-                    
+                    createComment = {createComments}
                     />
                   )
                 })}
@@ -91,7 +116,7 @@ const BlogDetailPage = (props) => {
                   title = {title}
                   content = {content}
                   tag = {tag}
-                  
+                  createComment = {createComments}
                    />
                 )
               })}
@@ -110,7 +135,7 @@ const BlogDetailPage = (props) => {
                     title = {title}
                     content = {content}
                     tag = {tag}
-                    
+                    createComment = {createComments}
                     />
                   )
                 })}
@@ -130,7 +155,7 @@ const BlogDetailPage = (props) => {
                     title = {title}
                     content = {content}
                     tag = {tag}
-                    
+                    createComment = {createComments}
                     />
                   )
                 })}
@@ -142,5 +167,5 @@ const BlogDetailPage = (props) => {
       </div>
     )
   }
-  
+
   export default BlogDetailPage
