@@ -20,8 +20,8 @@ export const getComment = async(id) => {
     return response
 }
 
-export const createComment = async(comment) => {
-    const url = setting.server + '/comment/'
+export const createComment = async(id, comment) => {
+    const url = setting.server + `/comment/${id}`
     const token = sessionStorage['token']
     let response
     try {

@@ -1,34 +1,26 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { getComment } from './../services/comment.service';
+import { getComment } from '../services/comment.service';
 
 const BlogAll = (props) => {
-    const { id, title, content, tag, createComment, getComments} = props
+    const { id, title, content, tag, createComment } = props
 
     const navigate = useNavigate()
 
     const [comment, setComment] = useState('')
+    const [gcomment, setGcomment] = useState([])
 
-    const getBadgeTitle = () => {
-        if ( tag === 'LIFE') {
-            return 'Life'
-        } else if ( tag === 'ENTERTAINMENT') {
-            return 'Entertainment'
-        } else if ( tag === 'SPORTS') {
-            return 'Sports'
-        } else if ( tag === 'FINANCE') {
-            return 'Finance'
-        } else if ( tag === 'FASHION') {
-            return 'Fashion'
-        }
+    const loadComment = async () => {
+    const result = await getComment(sessionStorage.getItem('id'))
+    if(result) {
+      console.log(result)
+      setGcomment(result)
     }
+  }
 
     const onButtonSave = async() => {
         createComment(comment)
-        sessionStorage['comment'] = id
     }
-
-
 
     const backgroundColors = {
         LIFE: '#00B4D8',
@@ -52,16 +44,15 @@ const BlogAll = (props) => {
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text" style={{overflow:'hidden'}}>{content}</p>
-                <span class="badge badge-light" style={{
+                <span className="badge badge-light" style={{
                     backgroundColor: backgroundColors[tag],
                     color: '#fff',
                     float: 'left',
                     borderRadius: '5px',
                 }}>{tag}</span>
-                
                  <div className="form">
                     <div className="mb-3" style={{marginTop: '10px'}}>
-                    <input className="form-control" style={{overflow:'hidden',width:'100%', marginTop:'50px'}}></input>
+
                     <label style={{float: 'left'}} className="form-label">Comment</label>
                     <input
                     onChange={(e) => {

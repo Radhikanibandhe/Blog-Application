@@ -7,6 +7,7 @@ import Header from '../components/header.component';
 import { createComment } from '../services/comment.service'
 import { getProfile } from './../services/user.service';
 import { getComment } from './../services/comment.service';
+import Comment from '../components/comment.component';
 
 const BlogDetailPage = (props) => {
 
@@ -15,32 +16,17 @@ const BlogDetailPage = (props) => {
   const [blogSports, setBlogSports] = useState([])
   const [blogFinance, setBlogFinance] = useState([])
   const [blogFashion, setBlogFashion] = useState([])
-
-  const createComments = async(comment) => {
-    const result = await createComment(comment)
-    console.log(result)
-    if(result) {
-      console.log('comment creating')
-    }
-  }
+  const [comment, setComment] = useState([])
 
   const navigate = useNavigate()
 
-  const getComments = async() => {
-    const result = await getComment(sessionStorage.getItem('comment'))
-    if (result) {
-      console.log(result)
-      return result
-    }
-    return null
-  }
 
   useEffect(() => {
     reloadBlogs()
   },[])
 
 
-const [gcomment, setComment] = useState('')
+
   const reloadBlogs = () => {
     loadBlog('LIFE', setBlogLife)
     loadBlog('ENTERTAINMENT',setBlogEntertainment)
@@ -57,6 +43,7 @@ const [gcomment, setComment] = useState('')
     }
   }
 
+  
 
     return (
       <div>
@@ -69,15 +56,14 @@ const [gcomment, setComment] = useState('')
               blogLife.map((blog) => {
                 const {id, title, tag, content} = blog
                 return (
-                  <BlogAll 
-                  key = {id}
-                  id = {id}
-                  title = {title}
-                  content = {content}
-                  tag = {tag}
-                  createComment = {createComments}
-                  getComments = {getComments}
-                   />
+                  <BlogAll
+                    key={id}
+                    id={id}
+                    title={title}
+                    content={content}
+                    tag={tag}
+                    
+                    />
                 )
               })}
               {blogLife.length === 0 && <div>No life related blogs</div>}
@@ -88,17 +74,18 @@ const [gcomment, setComment] = useState('')
                 {blogEntertainment.length > 0 && 
                 blogEntertainment.map((blog) => {
                   const {id, title, tag, content} = blog
-                  return (
-                    <BlogAll 
-                    key = {id}
-                    id = {id}
-                    title = {title}
-                    content = {content}
-                    tag = {tag}
-                    createComment = {createComments}
+                return (
+                  <BlogAll
+                    key={id}
+                    id={id}
+                    title={title}
+                    content={content}
+                    tag={tag}
+                    
                     />
-                  )
-                })}
+                )
+              })}
+               
                 {blogEntertainment.length === 0 && <div>No Entertainment related blogs</div>}
               </div>
         </div>
@@ -116,7 +103,7 @@ const [gcomment, setComment] = useState('')
                   title = {title}
                   content = {content}
                   tag = {tag}
-                  createComment = {createComments}
+                  
                    />
                 )
               })}
@@ -135,7 +122,7 @@ const [gcomment, setComment] = useState('')
                     title = {title}
                     content = {content}
                     tag = {tag}
-                    createComment = {createComments}
+                    
                     />
                   )
                 })}
@@ -148,6 +135,7 @@ const [gcomment, setComment] = useState('')
                 {blogFashion.length > 0 && 
                 blogFashion.map((blog) => {
                   const {id, title, tag, content} = blog
+                  
                   return (
                     <BlogAll 
                     key = {id}
@@ -155,7 +143,7 @@ const [gcomment, setComment] = useState('')
                     title = {title}
                     content = {content}
                     tag = {tag}
-                    createComment = {createComments}
+                    
                     />
                   )
                 })}
