@@ -10,17 +10,6 @@ const BlogAll = (props) => {
     const [comment, setComment] = useState('')
     const [gcomment, setGcomment] = useState([])
 
-    const loadComment = async () => {
-    const result = await getComment(sessionStorage.getItem('id'))
-    if(result) {
-      console.log(result)
-      setGcomment(result)
-    }
-  }
-
-    const onButtonSave = async() => {
-        createComment(comment)
-    }
 
     const backgroundColors = {
         LIFE: '#00B4D8',
@@ -28,6 +17,11 @@ const BlogAll = (props) => {
         SPORTS: '#980F5A',
         FINANCE: '#65C18C',
         FASHION: '#FF7BA9',
+    }
+
+    const onButtonRead = async () => {
+        sessionStorage['id'] = id
+        navigate('/view')
     }
 
     return (
@@ -50,22 +44,9 @@ const BlogAll = (props) => {
                     float: 'left',
                     borderRadius: '5px',
                 }}>{tag}</span>
-                 <div className="form">
-                    <div className="mb-3" style={{marginTop: '10px'}}>
 
-                    <label style={{float: 'left'}} className="form-label">Comment</label>
-                    <input
-                    onChange={(e) => {
-                        setComment(e.target.value)
-                    }}
-                    type="text"
-                    className="form-control"
-                    />
-                    <button style={{marginTop: '10px'}} className='btn btn-primary' onClick={onButtonSave}>Save</button>
+                <button className='btn btn-dark' onClick={onButtonRead} style={{float: 'right'}}>Read!</button>
                 </div>
-                
-                </div>
-            </div>
             </div>
     )
         

@@ -1,31 +1,20 @@
-import { useEffect, useState } from 'react';
-import { getBlogs } from './../services/blog.service';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Navbar from '../components/navbar.component';
+import { getBlogs } from '../services/blog.service';
+import Header from './../components/header.component';
 import BlogAll from './../components/blogAll.component';
-import Header from '../components/header.component';
-import { createComment } from '../services/comment.service'
-import { getProfile } from './../services/user.service';
-import { getComment } from './../services/comment.service';
-import Comment from '../components/comment.component';
 
 const BlogDetailPage = (props) => {
-
-  const [blogLife, setBlogLife] = useState([])
+    const [blogLife, setBlogLife] = useState([])
   const [blogEntertainment, setBlogEntertainment] = useState([])
   const [blogSports, setBlogSports] = useState([])
   const [blogFinance, setBlogFinance] = useState([])
   const [blogFashion, setBlogFashion] = useState([])
-  const [comment, setComment] = useState([])
-
-  const navigate = useNavigate()
 
 
   useEffect(() => {
     reloadBlogs()
   },[])
-
-
 
   const reloadBlogs = () => {
     loadBlog('LIFE', setBlogLife)
@@ -43,7 +32,7 @@ const BlogDetailPage = (props) => {
     }
   }
 
-  
+
 
     return (
       <div>
@@ -52,47 +41,47 @@ const BlogDetailPage = (props) => {
         <div className='container' style={{marginTop: '30px'}}>
           <div className='row'>
             <div className="col">
+              <h4 className="header">Life Related Blogs</h4>
               {blogLife.length > 0 && 
               blogLife.map((blog) => {
                 const {id, title, tag, content} = blog
                 return (
-                  <BlogAll
-                    key={id}
-                    id={id}
-                    title={title}
-                    content={content}
-                    tag={tag}
-                    
-                    />
+                  <BlogAll 
+                  key = {id}
+                  id = {id}
+                  title = {title}
+                  content = {content}
+                  tag = {tag}
+         
+                   />
                 )
               })}
               {blogLife.length === 0 && <div>No life related blogs</div>}
             </div>
            
               <div className="col">
-                
+                <h4 className="header">Entertainment Related Blogs</h4>
                 {blogEntertainment.length > 0 && 
                 blogEntertainment.map((blog) => {
                   const {id, title, tag, content} = blog
-                return (
-                  <BlogAll
-                    key={id}
-                    id={id}
-                    title={title}
-                    content={content}
-                    tag={tag}
-                    
+                  return (
+                    <BlogAll 
+                    key = {id}
+                    id = {id}
+                    title = {title}
+                    content = {content}
+                    tag = {tag}
+                  
                     />
-                )
-              })}
-               
+                  )
+                })}
                 {blogEntertainment.length === 0 && <div>No Entertainment related blogs</div>}
               </div>
         </div>
 
         <div className='row'>
             <div className="col">
-              
+              <h4 className="header">Sports Related Blogs</h4>
               {blogSports.length > 0 && 
               blogSports.map((blog) => {
                 const {id, title, tag, content} = blog
@@ -103,7 +92,7 @@ const BlogDetailPage = (props) => {
                   title = {title}
                   content = {content}
                   tag = {tag}
-                  
+              
                    />
                 )
               })}
@@ -111,7 +100,7 @@ const BlogDetailPage = (props) => {
             </div>
            
               <div className="col">
-                
+                <h4 className="header">Finance Related Blogs</h4>
                 {blogFinance.length > 0 && 
                 blogFinance.map((blog) => {
                   const {id, title, tag, content} = blog
@@ -122,7 +111,7 @@ const BlogDetailPage = (props) => {
                     title = {title}
                     content = {content}
                     tag = {tag}
-                    
+                  
                     />
                   )
                 })}
@@ -131,11 +120,10 @@ const BlogDetailPage = (props) => {
         </div>
         <div className='row'>
         <div className="col">
-                
+                <h4 className="header">Fashion Related Blogs</h4>
                 {blogFashion.length > 0 && 
                 blogFashion.map((blog) => {
                   const {id, title, tag, content} = blog
-                  
                   return (
                     <BlogAll 
                     key = {id}
@@ -143,7 +131,7 @@ const BlogDetailPage = (props) => {
                     title = {title}
                     content = {content}
                     tag = {tag}
-                    
+                   
                     />
                   )
                 })}
@@ -154,6 +142,5 @@ const BlogDetailPage = (props) => {
       </div>
       </div>
     )
-  }
-
-  export default BlogDetailPage
+}
+export default BlogDetailPage

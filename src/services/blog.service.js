@@ -20,6 +20,42 @@ export const getBlogs = async (tag = '') => {
   return response
 }
 
+export const getAllBlog = async () => {
+  const url = setting.server + '/blog'
+  const token = sessionStorage['token']
+  let response
+  try {
+    response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+    })
+    response = response.data
+  } catch (ex) {
+    console.log(ex)
+  }
+  return response
+}
+
+export const getBlogById = async(id = '') => {
+  const url = setting.server + `/blog/${id}`
+  const token = sessionStorage['token']
+  let response
+  try {
+    response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    response = response.data
+  } catch (ex) {
+    console.log(ex)
+  }
+
+  return response
+}
+
 export const createBlog = async (title, content, tag) => {
   const url = setting.server + '/blog/'
   const token = sessionStorage['token']
