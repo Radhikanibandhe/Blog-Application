@@ -64,7 +64,7 @@ const Blog = (props) => {
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text" style={{overflow:'hidden'}}>{content}</p>
-                <span class="badge badge-light" style={{
+                <span className="badge badge-light" style={{
                     backgroundColor: backgroundColors[tag],
                     color: '#fff',
                     float: 'left',

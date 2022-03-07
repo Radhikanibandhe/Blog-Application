@@ -36,29 +36,29 @@ const SigninPage = (props) => {
     <div className='container'>
       <h1 className="header">Signin</h1>
       <div className="form">
-        <div class="mb-3">
-          <label class="form-label">Username</label>
+        <div className="mb-3">
+          <label className="form-label">Username</label>
           <input
             onChange={(e) => {
               setUsername(e.target.value)
             }}
             type="text"
-            class="form-control"
+            className="form-control"
           />{' '}
         </div>
 
-        <div class="mb-3">
-          <label class="form-label">Password</label>
+        <div className="mb-3">
+          <label className="form-label">Password</label>
           <input
             onChange={(e) => {
               setPassword(e.target.value)
             }}
             type="password"
-            class="form-control"
+            className="form-control"
           />
         </div>
 
-        <div class="mb-3">
+        <div className="mb-3">
           <div>
             Don't have an account ? Signup <Link to="/signup">here</Link>
           </div>

@@ -50,35 +50,35 @@ const BlogCreatePage = (props) => {
     <><Navbar /><div className='container' style={{marginTop: '30px'}}>
       <h1 className="header">Create Blog!</h1>
       <div className="form">
-        <div class="mb-3">
-          <label class="form-label">Title</label>
+        <div className="mb-3">
+          <label className="form-label">Title</label>
           <input
             onChange={(e) => {
               setTitle(e.target.value)
             } }
             type="text"
-            class="form-control" />{' '}
+            className="form-control" />{' '}
         </div>
 
-        <div class="mb-3">
-          <label class="form-label">Content:</label>
+        <div className="mb-3">
+          <label className="form-label">Content:</label>
           <textarea
             onChange={(e) => {
               setContent(e.target.value)
             } }
             rows={5}
             type="text"
-            class="form-control"
+            className="form-control"
           ></textarea>
         </div>
 
-        <button class="btn btn-primary" style={{margin: '10px', color: '#FFF'}} onClick={onButtonEntertainment}>Entertainment</button>
-        <button class="btn btn-warning" style={{margin: '10px', color: '#FFF'}} onClick={onButtonSports}>Sports</button>
-        <button class="btn btn-light" style={{background: '#65C18C', margin: '10px', color: '#FFF'}} onClick={onButtonFinance}>Finance</button>
-        <button class="btn btn-light" style={{background: '#FF7BA9', margin: '10px', color: '#FFF'}} onClick={onButtonFashion}>Fashion</button>
-        <button class="btn btn-light" style={{background: '#00B4D8', margin: '10px', color: '#FFF'}} onClick={onButtonLife}>Life</button>
+        <button className="btn btn-primary" style={{margin: '10px', color: '#FFF'}} onClick={onButtonEntertainment}>Entertainment</button>
+        <button className="btn btn-warning" style={{margin: '10px', color: '#FFF'}} onClick={onButtonSports}>Sports</button>
+        <button className="btn btn-light" style={{background: '#65C18C', margin: '10px', color: '#FFF'}} onClick={onButtonFinance}>Finance</button>
+        <button className="btn btn-light" style={{background: '#FF7BA9', margin: '10px', color: '#FFF'}} onClick={onButtonFashion}>Fashion</button>
+        <button className="btn btn-light" style={{background: '#00B4D8', margin: '10px', color: '#FFF'}} onClick={onButtonLife}>Life</button>
 
-        <div class="mb-3">
+        <div className="mb-3">
           <button onClick={onCreateBlog} style={{ marginLeft: '10px',float:'right' }} className="btn btn-success">
             Save
           </button>

@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/navbar.component';
 import BlogAll from './../components/blogAll.component';
 import Header from '../components/header.component';
+import { createComment } from '../services/comment.service'
+import { getProfile } from './../services/user.service';
+import { getComment } from './../services/comment.service';
+import Comment from '../components/comment.component';
 
 const BlogDetailPage = (props) => {
 
@@ -12,12 +16,16 @@ const BlogDetailPage = (props) => {
   const [blogSports, setBlogSports] = useState([])
   const [blogFinance, setBlogFinance] = useState([])
   const [blogFashion, setBlogFashion] = useState([])
+  const [comment, setComment] = useState([])
 
   const navigate = useNavigate()
+
 
   useEffect(() => {
     reloadBlogs()
   },[])
+
+
 
   const reloadBlogs = () => {
     loadBlog('LIFE', setBlogLife)
@@ -35,6 +43,8 @@ const BlogDetailPage = (props) => {
     }
   }
 
+  
+
     return (
       <div>
         <Navbar />
@@ -46,13 +56,14 @@ const BlogDetailPage = (props) => {
               blogLife.map((blog) => {
                 const {id, title, tag, content} = blog
                 return (
-                  <BlogAll 
-                  key = {id}
-                  id = {id}
-                  title = {title}
-                  content = {content}
-                  tag = {tag}
-                   />
+                  <BlogAll
+                    key={id}
+                    id={id}
+                    title={title}
+                    content={content}
+                    tag={tag}
+                    
+                    />
                 )
               })}
               {blogLife.length === 0 && <div>No life related blogs</div>}
@@ -63,17 +74,18 @@ const BlogDetailPage = (props) => {
                 {blogEntertainment.length > 0 && 
                 blogEntertainment.map((blog) => {
                   const {id, title, tag, content} = blog
-                  return (
-                    <BlogAll 
-                    key = {id}
-                    id = {id}
-                    title = {title}
-                    content = {content}
-                    tag = {tag}
+                return (
+                  <BlogAll
+                    key={id}
+                    id={id}
+                    title={title}
+                    content={content}
+                    tag={tag}
                     
                     />
-                  )
-                })}
+                )
+              })}
+               
                 {blogEntertainment.length === 0 && <div>No Entertainment related blogs</div>}
               </div>
         </div>
@@ -123,6 +135,7 @@ const BlogDetailPage = (props) => {
                 {blogFashion.length > 0 && 
                 blogFashion.map((blog) => {
                   const {id, title, tag, content} = blog
+                  
                   return (
                     <BlogAll 
                     key = {id}
@@ -142,5 +155,5 @@ const BlogDetailPage = (props) => {
       </div>
     )
   }
-  
+
   export default BlogDetailPage
