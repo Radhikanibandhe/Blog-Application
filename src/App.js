@@ -8,6 +8,7 @@ import BlogCreatePage from './pages/blog.create.page';
 import ProfilePage from './pages/profile.page';
 import UpdateUserPage from './pages/update.user.page';
 import BlogUpdatePage from './pages/update.blog.page';
+import ViewBlogPage from './pages/view.blog.page';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path='profile' element={<ProfilePage />} />
           <Route path='update' element={<UpdateUserPage />} />
           <Route path='updateBlog' element={<BlogUpdatePage />} />
+          <Route path='view' element={<ViewBlogPage />} />
         </Routes>
       </BrowserRouter>
     </div>
